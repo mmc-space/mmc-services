@@ -1,12 +1,20 @@
 import { Controller, Get } from '@nestjs/common'
-import { AppService } from './app.service'
+import * as pkg from '../package.json'
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
   @Get()
-  getHello(): string {
-    return this.appService.getHello()
+  info() {
+    const { name, version } = pkg
+
+    return {
+      name,
+      version,
+    }
+  }
+
+  @Get('/ping')
+  readyz(): 'pong' {
+    return 'pong'
   }
 }
