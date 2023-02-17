@@ -23,4 +23,4 @@ COPY --from=builder /app/dist ./dist
 
 # start server
 EXPOSE 4455
-CMD [ "pnpm", "run", "start:prod" ]
+CMD [ "npm", "run", "start:prod" ]
