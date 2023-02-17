@@ -3,7 +3,7 @@ version: '3.8'
 services:
   app:
     container_name: mmc-services
-    image: mmc-services:latest
+    image: mmszb/mmc-services:latest
     command: node dist/src/main.js
     environment:
       - NODE_ENV=production
@@ -11,13 +11,13 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '80:4455'
+      - '4455:4455'
     env_file:
       - .production.env
       - .development.env
     restart: always
     healthcheck:
-      test: [ 'CMD', 'curl', '-f', 'http://127.0.0.1/api/ping' ]
+      test: [ 'CMD', 'curl', '-f', 'localhost:4455/api/ping' ]
       interval: 1m30s
       timeout: 30s
       retries: 5
