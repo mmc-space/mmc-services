@@ -25,8 +25,6 @@ export class ChatService {
     })
 
     const [{ text }] = response.data.choices
-    console.log(prompt, response.data.choices)
-
     return text
   }
 }

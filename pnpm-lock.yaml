@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   '@mmc-cloud/eslint-config-ts': 1.0.1
   '@mmc-cloud/prettier': 1.0.2
-  '@mmc-cloud/web-lib': ^0.0.4
   '@nestjs/cli': ^9.2.0
   '@nestjs/common': ^9.3.8
   '@nestjs/config': ^2.3.1
@@ -38,7 +37,6 @@ specifiers:
   typescript: ^4.9.5
 
 dependencies:
-  '@mmc-cloud/web-lib': 0.0.4
   '@nestjs/common': 9.3.8_537f4dyna5eqdupcxnvaoq3vwa
   '@nestjs/config': 2.3.1_6hjtcnbswxd2r37etn7hs6457i
   '@nestjs/core': 9.3.8_yzoj3p2bprq7d3yxta62tmivri
@@ -905,11 +903,6 @@ packages:
     dependencies:
       prettier: 2.8.0
     dev: true
-
-  /@mmc-cloud/web-lib/0.0.4:
-    resolution: {integrity: sha512-Bg80r/kgDb1n0eKKjyAVvz+ijVEmmq9UxNR1VspCzILBan/ZmyAsZHAUXxoHJKET+xLir+JmaLaTKF6XBqo0rw==}
-    engines: {pnpm: '>= 7.0.0'}
-    dev: false
 
   /@nestjs/cli/9.2.0:
     resolution: {integrity: sha512-6B1IjDcJbrOu55oMF67L1x5lDUOZ3Zs9l7bKCBH9D78965m8wq/2rlEWl/gJto5TABLQWy3hVvV/s8VzUlRMxw==}
