@@ -1,6 +1,9 @@
 import { NestFactory } from '@nestjs/core'
-import { ValidationPipe } from '@nestjs/common'
+import { Logger, ValidationPipe } from '@nestjs/common'
+import * as pkg from '../package.json'
 import { AppModule } from './app.module'
+import { ResponseInterceptor } from '@/common/interceptors/response.interceptors'
+import { AllExceptionsFilter } from '@/common/exceptions/base.exception.filter'
 import { config, isDev } from '@/config'
 
 async function bootstrap() {
@@ -9,11 +12,14 @@ async function bootstrap() {
   if (!isDev) app.setGlobalPrefix('api')
 
   app.useGlobalPipes(new ValidationPipe())
+  app.useGlobalInterceptors(new ResponseInterceptor())
+  app.useGlobalFilters(new AllExceptionsFilter())
 
   await app.listen(config.port, '0.0.0.0')
 
+  const logger = new Logger(pkg.name)
   const url = await app.getUrl()
-  console.info(`server listen to: ${url}`)
+  logger.log(`server listen to: ${url}`)
 }
 
 bootstrap()
