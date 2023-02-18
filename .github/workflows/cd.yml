@@ -48,11 +48,6 @@ jobs:
       - name: Zip Assets
         run: zip -r assets.zip ./dist/**
 
-  release:
-    name: Release to Github
-    runs-on: ubuntu-latest
-    needs: [build]
-    steps:
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
@@ -78,7 +73,7 @@ jobs:
   deploy:
     name: Upload to Deploy Server
     runs-on: ubuntu-latest
-    needs: [release]
+    needs: [build]
     steps:
       - name: SSH deploy
         uses: appleboy/ssh-action@master
