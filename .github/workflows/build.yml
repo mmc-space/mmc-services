@@ -16,10 +16,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
-      - name: Install dependencies
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+
+      - name: echo demo
+        run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
