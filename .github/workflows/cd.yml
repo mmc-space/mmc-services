@@ -83,6 +83,5 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script_stop: true
           script: |
-            # curl https://github.com/mmc-space/mmc-services/download/v1.5.1/apollo-adminservice-1.5.1-github.zip
             docker images
             docker container
