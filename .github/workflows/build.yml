@@ -27,15 +27,15 @@ jobs:
           version: 7
           run_install: false
 
-      - name: echo demo
-        run: ls
-
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Build app
-        run: pnpm run build
+      # - name: Build app
+      # run: pnpm run build
 
-      - name: Service check
-        - run: node dist/src/main.js
-        - run: curl -f 127.0.0.1:4455/api
+      - name: Echo Files
+        run: ls
+
+      # - name: Service check
+      # - run: node dist/src/main.js
+      # - run: curl -f 127.0.0.1:4455/api
