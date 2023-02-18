@@ -48,6 +48,9 @@ jobs:
       - name: Zip Assets
         run: zip -r assets.zip ./dist/**
 
+      - name: Zip check
+        run: ls
+
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
@@ -81,3 +84,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
+          script_stop: true
+          script: |
+            whoami
+            ls
