@@ -30,11 +30,8 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      # - name: Build app
-      # run: pnpm run build
-
-      - name: Echo Files
-        run: ls
+      - name: Build app
+        run: pnpm run build
 
       # - name: Service check
       # - run: node dist/src/main.js
