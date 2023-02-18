@@ -33,6 +33,6 @@ jobs:
       - name: Build app
         run: pnpm run build
 
-      # - name: Service check
-      # - run: node dist/src/main.js
-      # - run: curl -f 127.0.0.1:4455/api
+      - name: Service check
+      - run: node dist/src/main.js
+      - run: curl -f 127.0.0.1:4455/api
