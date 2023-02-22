@@ -19,6 +19,7 @@ async function bootstrap() {
 
   const logger = new Logger(pkg.name)
   const url = await app.getUrl()
+
   logger.log(
     `env: ${isDev ? 'development' : 'production'} - server listen to: ${url}`,
   )
