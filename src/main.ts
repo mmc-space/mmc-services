@@ -6,7 +6,7 @@ import * as pkg from '../package.json'
 import { AppModule } from './app.module'
 import { ResponseInterceptor } from '@/common/interceptors/response.interceptors'
 import { AllExceptionsFilter } from '@/common/exceptions/base.exception.filter'
-import { config } from '@/config'
+import { config, isDev } from '@/config'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true })
