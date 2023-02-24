@@ -9,7 +9,6 @@ import { ChatModule } from './modules/chat/chat.module'
   imports: [
     // https://docs.nestjs.com/security/rate-limiting
     ThrottlerModule.forRoot({
-      
       ttl: 60,
       limit: 10,
     }),

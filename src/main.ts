@@ -9,7 +9,7 @@ import { AllExceptionsFilter } from '@/common/exceptions/base.exception.filter'
 import { config } from '@/config'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule, { cors: true })
 
   app.setGlobalPrefix('api')
 
