@@ -13,8 +13,10 @@ export class ChatService {
     })
     const openai = new OpenAIApi(configuration)
 
+    const listModels = await openai.listModels()
+
     const response = await openai.createCompletion({
-      model: 'text-davinci-003',
+      model: 'gpt-3.5-turbo',
       prompt: `Human: ${prompt}\nAI:`,
       temperature: 0.9,
       max_tokens: 500,
@@ -25,6 +27,8 @@ export class ChatService {
     })
 
     const [{ text }] = response.data.choices
+    console.log(listModels, '=listModels=')
+
     return text
   }
 }
