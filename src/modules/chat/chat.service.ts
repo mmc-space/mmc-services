@@ -16,7 +16,7 @@ export class ChatService {
     const listModels = await openai.listModels()
 
     const response = await openai.createCompletion({
-      model: 'gpt-3.5-turbo',
+      model: 'text-davinci-003',
       prompt: `Human: ${prompt}\nAI:`,
       temperature: 0.9,
       max_tokens: 500,
