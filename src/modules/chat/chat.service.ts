@@ -20,6 +20,6 @@ export class ChatService {
       parentMessageId,
     })
 
-    return response
+    return { ...response, type, parentMessageId }
   }
 }
