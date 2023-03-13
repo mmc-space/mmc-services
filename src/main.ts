@@ -6,10 +6,10 @@ import * as pkg from '../package.json'
 import { AppModule } from './app.module'
 import { ResponseInterceptor } from '@/common/interceptors/response.interceptors'
 import { AllExceptionsFilter } from '@/common/exceptions/base.exception.filter'
-import { config } from '@/config'
+import { config, isDev } from '@/config'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule, { cors: true })
 
   app.setGlobalPrefix('api')
 
@@ -23,7 +23,10 @@ async function bootstrap() {
 
   const logger = new Logger(pkg.name)
   const url = await app.getUrl()
-  logger.log(`server listen to: ${url}`)
+
+  logger.log(
+    `env: ${isDev ? 'development' : 'production'} - server listen to: ${url}`,
+  )
 }
 
 bootstrap()
