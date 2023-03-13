@@ -9,7 +9,12 @@ export class ChatService {
   async generateChat(prompt: string, parentMessageId?: string) {
     const { ChatGPTAPI } = await importDynamic('chatgpt')
     const apiKey = this.configService.get<string>('CHATGPT_KEY')
-    const chatgpt = new ChatGPTAPI({ apiKey })
+    const chatgpt = new ChatGPTAPI({
+      apiKey,
+      completionParams: {
+        model: 'gpt-3.5-turbo',
+      },
+    })
     const response = await chatgpt.sendMessage(prompt, { parentMessageId })
 
     return response
