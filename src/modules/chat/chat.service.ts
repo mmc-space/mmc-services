@@ -4,18 +4,20 @@ import { importDynamic } from '@/utils/import'
 
 @Injectable()
 export class ChatService {
+  public chatgpt: any
   constructor(private configService: ConfigService) {}
 
-  async generateChat(prompt: string, parentMessageId?: string) {
+  async initChatgpt() {
     const { ChatGPTAPI } = await importDynamic('chatgpt')
     const apiKey = this.configService.get<string>('CHATGPT_KEY')
-    const chatgpt = new ChatGPTAPI({
-      apiKey,
-      completionParams: {
-        model: 'gpt-3.5-turbo',
-      },
-    })
-    const response = await chatgpt.sendMessage(prompt, { parentMessageId })
+    const chatgpt = new ChatGPTAPI({ apiKey })
+
+    this.chatgpt = chatgpt
+  }
+
+  async generateChat(prompt: string, parentMessageId?: string) {
+    if (this.chatgpt) throw new Error('chatgpt is undefined')
+    const response = await this.chatgpt.sendMessage(prompt, { parentMessageId })
 
     return response
   }
