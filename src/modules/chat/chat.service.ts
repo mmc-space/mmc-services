@@ -1,30 +1,23 @@
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { Configuration, OpenAIApi } from 'openai'
+import { ChatGPTAPI } from 'chatgpt'
 
 @Injectable()
 export class ChatService {
   constructor(private configService: ConfigService) {}
 
-  async generateChat(prompt: string) {
+  async generateChat(prompt: string, parentMessageId?: string) {
+    // const { ChatGPTAPI } = await importDynamic('chatgpt')
+
     const apiKey = this.configService.get<string>('CHATGPT_KEY')
-    const configuration = new Configuration({
+    const openai = new ChatGPTAPI({
       apiKey,
     })
-    const openai = new OpenAIApi(configuration)
 
-    const response = await openai.createCompletion({
-      model: 'text-davinci-003',
-      prompt: `Human: ${prompt}\nAI:`,
-      temperature: 0.9,
-      max_tokens: 500,
-      // top_p: 1,
-      frequency_penalty: 0.0,
-      presence_penalty: 0.6,
-      stop: [' Human:', ' AI:'],
+    const response = await openai.sendMessage(prompt, {
+      parentMessageId,
     })
 
-    const [{ text }] = response.data.choices
-    return text
+    return response
   }
 }
