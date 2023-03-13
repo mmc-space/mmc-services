@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
+import Authenticator from 'openai-token'
 import { importDynamic } from '@/utils/import'
 
 @Injectable()
@@ -8,9 +9,14 @@ export class ChatService {
   constructor(private configService: ConfigService) {}
 
   async initChatgpt() {
-    const { ChatGPTAPI } = await importDynamic('chatgpt')
-    const apiKey = this.configService.get<string>('CHATGPT_KEY')
-    const chatgpt = new ChatGPTAPI({ apiKey })
+    const email = this.configService.get<string>('CHATGPT_EMAIL')
+    const password = this.configService.get<string>('CHATGPT_PASSWORD')
+    const auth = new Authenticator(email, password)
+    await auth.begin()
+    const accessToken = await auth.getAccessToken()
+    const { ChatGPTUnofficialProxyAPI } = await importDynamic('chatgpt')
+
+    const chatgpt = new ChatGPTUnofficialProxyAPI({ accessToken })
 
     this.chatgpt = chatgpt
   }
