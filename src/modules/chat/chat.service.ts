@@ -6,11 +6,13 @@ import { importDynamic } from '@/utils/import'
 export class ChatService {
   constructor(private configService: ConfigService) {}
 
-  async generateChat(prompt: string, parentMessageId?: string) {
-    const { ChatGPTAPI } = await importDynamic('chatgpt')
+  async generateChat(type: number, prompt: string, parentMessageId?: string) {
+    const { ChatGPTAPI, ChatGPTUnofficialProxyAPI } = await importDynamic(
+      'chatgpt',
+    )
 
     const apiKey = this.configService.get<string>('CHATGPT_KEY')
-    const openai = new ChatGPTAPI({
+    const openai = new (type === 1 ? ChatGPTAPI : ChatGPTUnofficialProxyAPI)({
       apiKey,
     })
 
