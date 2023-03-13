@@ -4,4 +4,7 @@ export class ChatDto {
   @IsNotEmpty()
   @IsString()
   prompt: string
+
+  @IsString()
+  parentMessageId: string
 }
