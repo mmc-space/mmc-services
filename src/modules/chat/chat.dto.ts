@@ -5,6 +5,5 @@ export class ChatDto {
   @IsString()
   prompt: string
 
-  @IsString()
-  parentMessageId: string
+  parentMessageId?: string
 }
