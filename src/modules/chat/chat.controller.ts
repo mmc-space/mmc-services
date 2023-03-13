@@ -8,7 +8,7 @@ export class ChatController {
 
   @Get()
   generateChat(@Query() query: ChatDto) {
-    const { prompt, parentMessageId, type = 1 } = query
-    return this.chatService.generateChat(type, prompt, parentMessageId)
+    const { prompt, parentMessageId } = query
+    return this.chatService.generateChat(prompt, parentMessageId)
   }
 }

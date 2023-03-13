@@ -6,6 +6,4 @@ export class ChatDto {
   prompt: string
 
   parentMessageId?: string
-
-  type?: number
 }
