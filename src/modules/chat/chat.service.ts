@@ -22,7 +22,6 @@ export class ChatService {
   }
 
   async generateChat(prompt: string, parentMessageId?: string) {
-    if (this.chatgpt) throw new Error('chatgpt is undefined')
     const response = await this.chatgpt.sendMessage(prompt, { parentMessageId })
 
     return response
