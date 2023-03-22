@@ -54,10 +54,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: tag-${{ github.ref }}
-          release_name: release-${{ github.ref }}
+          tag_name: ${{ steps.bump_version.outputs.new_version }}
+          release_name: Release ${{ steps.bump_version.outputs.new_version }}
           draft: false
           prerelease: false
+
+      - name: Bump version
+        id: bump_version
+        uses: anothrNick/github-tag-action@v1.25.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          push: false
+          prefix: "v"
+          name: "v"
+          message: "New Release"
 
       - name: Update Release Asset
         id: upload-release-asset
