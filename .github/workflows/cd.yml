@@ -45,6 +45,15 @@ jobs:
       - name: Zip Assets
         run: zip -r assets.zip ./dist/**
 
+      - name: Bump version
+        id: bump-version
+        uses: anothrnick/github-tag-action@1.35.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          RELEASE_BRANCHES: master
+          DEFAULT_BUMP: minor
+
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
